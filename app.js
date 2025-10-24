@@ -3,29 +3,17 @@ const cors = require('cors');
 const fs = require('fs');
 const axios = require('axios');
 const Joi = require('joi');
+const mongoose = require('mongoose');
+const User = require('./models/User');
+const Investment = require('./models/Investment');
+const HistoricalSnapshot = require('./models/HistoricalSnapshot');
 
-const fsp = require('fs').promises;
-let writeQueue = Promise.resolve();
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connected...'))
+  .catch(err => console.error(err));
 
-const safeWriteJson = (filePath, obj) => {
-  const data = JSON.stringify(obj, null, 2);
-  // enqueue writes to avoid races
-  writeQueue = writeQueue.then(() => fsp.writeFile(filePath, data, 'utf8'));
-  return writeQueue;
-};
 
-const safeReadJson = async (filePath, defaultValue) => {
-  try {
-    const raw = await fsp.readFile(filePath, 'utf8');
-    return JSON.parse(raw);
-  } catch (err) {
-    return defaultValue;
-  }
-};
-
-const readPromiseWrapper = async (filePath, defaultValue) => {
-  return await safeReadJson(filePath, defaultValue);
-};
 
 const app = express();
 
@@ -36,9 +24,7 @@ app.use(express.json());
 // --- CONFIGURATION ---
 const FMP_API_KEY = process.env.FMP_API_KEY; 
 
-const investmentsFilePath = './investments.json';
-const manualPricesFilePath = './manual_asset_prices.json';
-const historicalPortfolioFilePath = './historical_portfolio_value.json';
+
 
 const newInvestmentSchema = Joi.object({
   category: Joi.string().required(),
@@ -48,6 +34,12 @@ const newInvestmentSchema = Joi.object({
   totalPurchasePrice: Joi.number().precision(2).min(0).required(),
   manualLivePrice: Joi.number().precision(2).optional().allow(null),
   currentValue: Joi.number().precision(2).optional()
+});
+
+const userRegistrationSchema = Joi.object({
+  username: Joi.string().alphanum().min(3).max(30).required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required(), // Password will be hashed in the model
 });
 
 // --- MAPPINGS ---
@@ -95,116 +87,127 @@ async function getLivePrice(inv, manualAssetPrices, cryptoPrices, stockPrices) {
     return livePrice;
 }
 
-// --- DATA FUNCTIONS ---
-const readInvestments = async () => readPromiseWrapper(investmentsFilePath, []);
 
-// ... (other data functions remain the same) ...
-const writeInvestments = async (investments) => {
-    await safeWriteJson(investmentsFilePath, investments);
-};
 
-const readManualPrices = async () => {
-    return await safeReadJson(manualPricesFilePath, {});
-};
 
-const writeManualPrices = async (prices) => {
-    await safeWriteJson(manualPricesFilePath, prices);
-};
+// --- AUTH ENDPOINTS ---
+app.post('/api/register', async (req, res) => {
+  const { error, value } = userRegistrationSchema.validate(req.body);
+  if (error) return res.status(400).json({ error: error.details.map(d => d.message).join(', ') });
 
-const readHistoricalData = async () => {
-    return await safeReadJson(historicalPortfolioFilePath, []);
-};
+  try {
+    const { username, email, password } = value;
 
-const writeHistoricalData = async (data) => {
-    await safeWriteJson(historicalPortfolioFilePath, data);
-};
+    // Check if user already exists
+    let user = await User.findOne({ $or: [{ username }, { email }] });
+    if (user) {
+      return res.status(409).json({ error: 'Username or email already registered.' });
+    }
 
+    user = new User({ username, email, passwordHash: password }); // passwordHash will be hashed by pre-save hook
+    await user.save();
+
+    res.status(201).json({ message: 'User registered successfully.' });
+  } catch (err) {
+    console.error('Error during user registration:', err);
+    res.status(500).json({ error: 'Failed to register user due to a server error.' });
+  }
+});
 
 // --- API ENDPOINT ---
 app.get('/api/investments', async (req, res) => {
     console.log('--- New Request Received ---');
-    const currentInvestments = await readInvestments();
-    const manualAssetPrices = await readManualPrices();
+    // TODO: Replace with actual userId from authentication middleware
+    const userId = '60d5ec49f8c7a10015e8a4b5'; // Placeholder userId
 
-    // 1. Fetch Crypto Prices
-    let cryptoPrices = {};
-    const cryptoInvestments = currentInvestments.filter(inv => inv.category === 'Crypto' && cryptoIdMapping[inv.name.toLowerCase()]);
-    const cryptoIds = [...new Set(cryptoInvestments.map(inv => cryptoIdMapping[inv.name.toLowerCase()]))];
-    if (cryptoIds.length > 0) {
-        const apiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoIds.join(',')}&vs_currencies=inr`;
-        console.log(`Fetching crypto prices from: ${apiUrl}`);
-        try {
-            const response = await axios.get(apiUrl);
-            cryptoPrices = response.data;
-            console.log("Received prices from CoinGecko:", JSON.stringify(cryptoPrices, null, 2));
-        } catch (error) {
-            console.error("Error fetching crypto prices from CoinGecko:", error.message);
+    try {
+        const currentInvestments = await Investment.find({ userId });
+        // Manual prices will be stored per user in the future, for now, keep it simple
+        const manualAssetPrices = {}; // await readManualPrices(); // This will be per user later
+
+        // 1. Fetch Crypto Prices
+        let cryptoPrices = {};
+        const cryptoInvestments = currentInvestments.filter(inv => inv.category === 'Crypto' && cryptoIdMapping[inv.name.toLowerCase()]);
+        const cryptoIds = [...new Set(cryptoInvestments.map(inv => cryptoIdMapping[inv.name.toLowerCase()]))];
+        if (cryptoIds.length > 0) {
+            const apiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoIds.join(',')}&vs_currencies=inr`;
+            console.log(`Fetching crypto prices from: ${apiUrl}`);
+            try {
+                const response = await axios.get(apiUrl);
+                cryptoPrices = response.data;
+                console.log("Received prices from CoinGecko:", JSON.stringify(cryptoPrices, null, 2));
+            } catch (error) {
+                console.error("Error fetching crypto prices from CoinGecko:", error.message);
+            }
         }
-    }
 
-    // 2. Fetch Stock and ETF Prices
-    let stockPrices = {};
-    const stockInvestments = currentInvestments.filter(inv => (inv.category === 'Stocks' || inv.category === 'ETF Groww') && stockTickerMapping[inv.name.toLowerCase()]);
-    const stockTickers = [...new Set(stockInvestments.map(inv => stockTickerMapping[inv.name.toLowerCase()]))];
-    if (stockTickers.length > 0 && FMP_API_KEY !== 'YOUR_API_KEY') {
-        const apiUrl = `https://financialmodelingprep.com/api/v3/quote/${stockTickers.join(',')}?apikey=${FMP_API_KEY}`;
-        console.log(`Fetching stock/ETF prices from: ${apiUrl}`);
-        try {
-            const response = await axios.get(apiUrl);
-            // Process the array response from FMP into a map
-            response.data.forEach(quote => {
-                stockPrices[quote.symbol] = quote.price;
+        // 2. Fetch Stock and ETF Prices
+        let stockPrices = {};
+        const stockInvestments = currentInvestments.filter(inv => (inv.category === 'Stocks' || inv.category === 'ETF Groww') && stockTickerMapping[inv.name.toLowerCase()]);
+        const stockTickers = [...new Set(stockInvestments.map(inv => stockTickerMapping[inv.name.toLowerCase()]))];
+        if (stockTickers.length > 0 && FMP_API_KEY) { // Check if FMP_API_KEY is set
+            const apiUrl = `https://financialmodelingprep.com/api/v3/quote/${stockTickers.join(',')}?apikey=${FMP_API_KEY}`;
+            console.log(`Fetching stock/ETF prices from: ${apiUrl}`);
+            try {
+                const response = await axios.get(apiUrl);
+                // Process the array response from FMP into a map
+                response.data.forEach(quote => {
+                    stockPrices[quote.symbol] = quote.price;
+                });
+                console.log("Received prices from FMP:", JSON.stringify(stockPrices, null, 2));
+            } catch (error) {
+                console.error("Error fetching stock/ETF prices from FMP:", error.message);
+            }
+        } else if (!FMP_API_KEY) {
+            console.log("FMP_API_KEY is not set. Skipping stock/ETF price fetch.");
+        }
+
+        // 3. Process all investments
+        let investmentsWithLivePrice = [];
+        for (const inv of currentInvestments) {
+            console.log(`Processing investment: ${inv.name} (Category: ${inv.category})`);
+
+            // Normalize numeric fields and compute totals correctly
+            const qty = parseFloat(inv.quantity) || 0;
+            const totalPurchasePrice = (inv.purchasePrice !== undefined && inv.purchasePrice !== null)
+              ? parseFloat(inv.purchasePrice)
+              : 0; // Assuming purchasePrice is directly stored in DB
+
+            // Determine livePrice per unit using helper function
+            const livePricePerUnit = await getLivePrice(inv, manualAssetPrices, cryptoPrices, stockPrices);
+            
+            // Compute current value & profit/loss
+            let currentValue = 0;
+            let profitOrLoss = 0;
+            
+            if (inv.category === 'Money') {
+              currentValue = totalPurchasePrice; // Money is stored as absolute value
+              profitOrLoss = 0;
+            } else {
+              currentValue = qty * (livePricePerUnit || 0);
+              // Compare like with like: total purchase vs total current
+              profitOrLoss = currentValue - totalPurchasePrice;
+            }
+            
+            // Round numbers to 2 decimals for presentation
+            const round = (n) => Math.round((n + Number.EPSILON) * 100) / 100;
+            
+            investmentsWithLivePrice.push({
+              ...inv.toObject(), // Convert Mongoose document to plain object
+              quantity: qty,
+              livePricePerUnit: livePricePerUnit === null ? null : round(livePricePerUnit),
+              currentValue: round(currentValue),
+              profitOrLoss: round(profitOrLoss),
+              totalPurchasePrice: round(totalPurchasePrice)
             });
-            console.log("Received prices from FMP:", JSON.stringify(stockPrices, null, 2));
-        } catch (error) {
-            console.error("Error fetching stock/ETF prices from FMP:", error.message);
         }
-    } else if (FMP_API_KEY === 'YOUR_API_KEY') {
-        console.log("FMP_API_KEY is not set. Skipping stock/ETF price fetch.");
+
+        console.log('--- Sending Response ---');
+        res.json(investmentsWithLivePrice);
+    } catch (err) {
+        console.error('Error fetching investments:', err);
+        res.status(500).json({ error: 'Failed to fetch investments due to a server error.' });
     }
-
-    // 3. Process all investments
-    let investmentsWithLivePrice = [];
-    for (const inv of currentInvestments) {
-        console.log(`Processing investment: ${inv.name} (Category: ${inv.category})`);
-
-        // Normalize numeric fields and compute totals correctly
-        const qty = parseFloat(inv.quantity) || 0;
-        const totalPurchasePrice = (inv.totalPurchasePrice !== undefined && inv.totalPurchasePrice !== null)
-          ? parseFloat(inv.totalPurchasePrice)
-          : ((inv.purchasePricePerUnit !== undefined) ? parseFloat(inv.purchasePricePerUnit) * qty : 0);
-        
-        // Determine livePrice per unit using helper function
-        const livePricePerUnit = await getLivePrice(inv, manualAssetPrices, cryptoPrices, stockPrices);
-        
-        // Compute current value & profit/loss
-        let currentValue = 0;
-        let profitOrLoss = 0;
-        
-        if (inv.category === 'Money') {
-          currentValue = totalPurchasePrice; // Money is stored as absolute value
-          profitOrLoss = 0;
-        } else {
-          currentValue = qty * (livePricePerUnit || 0);
-          // Compare like with like: total purchase vs total current
-          profitOrLoss = currentValue - totalPurchasePrice;
-        }
-        
-        // Round numbers to 2 decimals for presentation
-        const round = (n) => Math.round((n + Number.EPSILON) * 100) / 100;
-        
-        investmentsWithLivePrice.push({
-          ...inv,
-          quantity: qty,
-          livePricePerUnit: livePricePerUnit === null ? null : round(livePricePerUnit),
-          currentValue: round(currentValue),
-          profitOrLoss: round(profitOrLoss),
-          totalPurchasePrice: round(totalPurchasePrice)
-        });
-    }
-
-    console.log('--- Sending Response ---');
-    res.json(investmentsWithLivePrice);
 });
 
 // ... (other endpoints like POST, DELETE remain the same) ...
@@ -213,22 +216,31 @@ app.post('/api/investments', async (req, res) => {
   const { error, value } = newInvestmentSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details.map(d => d.message).join(', ') });
 
+  // TODO: Replace with actual userId from authentication middleware
+  const userId = '60d5ec49f8c7a10015e8a4b5'; // Placeholder userId
+
   const { category, name, quantity, date, totalPurchasePrice, manualLivePrice, currentValue } = value; // Use validated value
   try {
-    const currentInvestments = await readInvestments();
-
-    // Check for existing 'Money' investments
+    // Check for existing 'Money' investments for this user
     if (category === 'Money') {
-      const existingMoneyInvestment = currentInvestments.find(inv => inv.category === 'Money' && inv.name === name);
+      const existingMoneyInvestment = await Investment.findOne({ userId, category: 'Money', name });
       if (existingMoneyInvestment) {
         return res.status(409).json({ error: `Money investment with name '${name}' already exists. Use the update endpoint for changes.` });
       }
     }
 
-    const nextId = currentInvestments.length > 0 ? Math.max(...currentInvestments.map(i => i.id)) + 1 : 1;
-    const newInvestment = { id: nextId, category, name, quantity, date, totalPurchasePrice, manualLivePrice, currentValue };
-    const updatedInvestments = [...currentInvestments, newInvestment];
-    await writeInvestments(updatedInvestments);
+    const newInvestment = new Investment({
+      userId,
+      category,
+      name,
+      quantity,
+      purchasePrice: totalPurchasePrice, // Map totalPurchasePrice to purchasePrice in schema
+      date,
+      manualPrice: manualLivePrice, // Map manualLivePrice to manualPrice in schema
+      currentValue,
+    });
+    await newInvestment.save();
+
     res.status(201).json(newInvestment);
   } catch (err) {
     console.error('Error adding investment:', err);
@@ -237,15 +249,19 @@ app.post('/api/investments', async (req, res) => {
 });
 
 app.post('/api/investments/update-by-name', async (req, res) => {
+    // TODO: Replace with actual userId from authentication middleware
+    const userId = '60d5ec49f8c7a10015e8a4b5'; // Placeholder userId
+
     const { name, currentValue } = req.body;
     try {
-        let investments = await readInvestments();
-        const investmentIndex = investments.findIndex(inv => inv.name === name && inv.category === 'Money');
+        const updatedInvestment = await Investment.findOneAndUpdate(
+            { userId, name, category: 'Money' },
+            { currentValue },
+            { new: true } // Return the updated document
+        );
 
-        if (investmentIndex !== -1) {
-            investments[investmentIndex].currentValue = currentValue;
-            await writeInvestments(investments);
-            res.status(200).json(investments[investmentIndex]);
+        if (updatedInvestment) {
+            res.status(200).json(updatedInvestment);
         } else {
             res.status(404).send('Investment not found');
         }
@@ -256,18 +272,28 @@ app.post('/api/investments/update-by-name', async (req, res) => {
 });
 
 app.put('/api/manual-asset-prices/:assetName', async (req, res) => {
+    // TODO: Replace with actual userId from authentication middleware
+    const userId = '60d5ec49f8c7a10015e8a4b5'; // Placeholder userId
+
     const assetName = req.params.assetName.toLowerCase();
     const { price } = req.body;
 
     if (price === undefined || isNaN(parseFloat(price))) {
-        return res.status(400).send('Invalid price provided');
+        return res.status(400).json({ error: 'Invalid price provided' });
     }
 
     try {
-        const manualAssetPrices = await readManualPrices();
-        manualAssetPrices[assetName] = parseFloat(price);
-        await writeManualPrices(manualAssetPrices);
-        res.json({ [assetName]: manualAssetPrices[assetName] });
+        const updatedInvestment = await Investment.findOneAndUpdate(
+            { userId, name: assetName }, // Find by userId and asset name
+            { manualPrice: parseFloat(price) }, // Update manualPrice
+            { new: true } // Return the updated document
+        );
+
+        if (updatedInvestment) {
+            res.status(200).json(updatedInvestment);
+        } else {
+            res.status(404).json({ error: 'Investment not found' });
+        }
     } catch (err) {
         console.error('Error updating manual asset price:', err);
         res.status(500).json({ error: 'Failed to update manual asset price due to a server error.' });
@@ -275,12 +301,18 @@ app.put('/api/manual-asset-prices/:assetName', async (req, res) => {
 });
 
 app.delete('/api/investments/:id', async (req, res) => {
-    const { id } = req.params;
+    // TODO: Replace with actual userId from authentication middleware
+    const userId = '60d5ec49f8c7a10015e8a4b5'; // Placeholder userId
+
+    const { id } = req.params; // This 'id' is the MongoDB _id
     try {
-        const currentInvestments = await readInvestments();
-        const updatedInvestments = currentInvestments.filter(inv => inv.id !== parseInt(id));
-        await writeInvestments(updatedInvestments);
-        res.status(204).send();
+        const deletedInvestment = await Investment.findOneAndDelete({ _id: id, userId });
+
+        if (deletedInvestment) {
+            res.status(204).send(); // No content
+        } else {
+            res.status(404).json({ error: 'Investment not found or not authorized' });
+        }
     } catch (err) {
         console.error('Error deleting investment:', err);
         res.status(500).json({ error: 'Failed to delete investment due to a server error.' });
@@ -288,8 +320,16 @@ app.delete('/api/investments/:id', async (req, res) => {
 });
 
 app.get('/api/historical-portfolio-value', async (req, res) => {
-    const historicalData = await readHistoricalData();
-    res.json(historicalData);
+    // TODO: Replace with actual userId from authentication middleware
+    const userId = '60d5ec49f8c7a10015e8a4b5'; // Placeholder userId
+
+    try {
+        const historicalData = await HistoricalSnapshot.find({ userId }).sort({ date: 1 }); // Sort by date ascending
+        res.json(historicalData);
+    } catch (err) {
+        console.error('Error fetching historical portfolio value:', err);
+        res.status(500).json({ error: 'Failed to fetch historical portfolio value due to a server error.' });
+    }
 });
 
 app.post('/api/save-daily-snapshot', async (req, res) => {
