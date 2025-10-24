@@ -1,0 +1,1000 @@
+[
+  {
+    "id": 5,
+    "category": "Crypto",
+    "name": "BTC",
+    "quantity": 0.00005633,
+    "date": "2025-01-12",
+    "totalPurchasePrice": 493
+  },
+  {
+    "id": 6,
+    "category": "Crypto",
+    "name": "BTC",
+    "quantity": 0.00004995,
+    "date": "2025-01-19",
+    "totalPurchasePrice": 497
+  },
+  {
+    "id": 9,
+    "category": "Crypto",
+    "name": "BTC",
+    "quantity": 0.0000504,
+    "date": "2025-01-26",
+    "totalPurchasePrice": 497.04
+  },
+  {
+    "id": 10,
+    "category": "Crypto",
+    "name": "BTC",
+    "quantity": 0.00005359,
+    "date": "2025-02-02",
+    "totalPurchasePrice": 496
+  },
+  {
+    "id": 11,
+    "category": "Crypto",
+    "name": "BTC",
+    "quantity": 0.00011378,
+    "date": "2025-02-17",
+    "totalPurchasePrice": 999.98
+  },
+  {
+    "id": 12,
+    "category": "Crypto",
+    "name": "BTC",
+    "quantity": 0.00005749,
+    "date": "2025-02-23",
+    "totalPurchasePrice": 497.05
+  },
+  {
+    "id": 13,
+    "category": "Crypto",
+    "name": "BTC",
+    "quantity": 0.00005944,
+    "date": "2025-03-03",
+    "totalPurchasePrice": 500.94
+  },
+  {
+    "id": 15,
+    "category": "Crypto",
+    "name": "ETH",
+    "quantity": 0.00162,
+    "date": "2025-01-12",
+    "totalPurchasePrice": 497.02
+  },
+  {
+    "id": 16,
+    "category": "Crypto",
+    "name": "ETH",
+    "quantity": 0.00161,
+    "date": "2025-01-19",
+    "totalPurchasePrice": 497.89
+  },
+  {
+    "id": 17,
+    "category": "Crypto",
+    "name": "ETH",
+    "quantity": 0.00159,
+    "date": "2025-01-26",
+    "totalPurchasePrice": 496.26
+  },
+  {
+    "id": 18,
+    "category": "Crypto",
+    "name": "ETH",
+    "quantity": 0.00172,
+    "date": "2025-02-02",
+    "totalPurchasePrice": 497.82
+  },
+  {
+    "id": 19,
+    "category": "Crypto",
+    "name": "ETH",
+    "quantity": 0.00412,
+    "date": "2025-02-17",
+    "totalPurchasePrice": 1001.15
+  },
+  {
+    "id": 20,
+    "category": "Crypto",
+    "name": "ETH",
+    "quantity": 0.00198,
+    "date": "2025-02-23",
+    "totalPurchasePrice": 498.25
+  },
+  {
+    "id": 21,
+    "category": "Crypto",
+    "name": "ETH",
+    "quantity": 0.00232,
+    "date": "2025-03-03",
+    "totalPurchasePrice": 500.94
+  },
+  {
+    "id": 22,
+    "category": "Crypto",
+    "name": "XRP",
+    "quantity": 1.91,
+    "date": "2025-01-12",
+    "totalPurchasePrice": 448.55
+  },
+  {
+    "id": 23,
+    "category": "Crypto",
+    "name": "XRP",
+    "quantity": 0.66,
+    "date": "2025-01-19",
+    "totalPurchasePrice": 199.98
+  },
+  {
+    "id": 24,
+    "category": "Crypto",
+    "name": "XRP",
+    "quantity": 0.68,
+    "date": "2025-01-26",
+    "totalPurchasePrice": 200.19
+  },
+  {
+    "id": 25,
+    "category": "Crypto",
+    "name": "XRP",
+    "quantity": 0.75,
+    "date": "2025-02-02",
+    "totalPurchasePrice": 199.53
+  },
+  {
+    "id": 26,
+    "category": "Crypto",
+    "name": "XRP",
+    "quantity": 1.62,
+    "date": "2025-02-17",
+    "totalPurchasePrice": 401.11
+  },
+  {
+    "id": 27,
+    "category": "Crypto",
+    "name": "XRP",
+    "quantity": 0.86,
+    "date": "2025-02-23",
+    "totalPurchasePrice": 199.44
+  },
+  {
+    "id": 28,
+    "category": "Crypto",
+    "name": "XRP",
+    "quantity": 0.84,
+    "date": "2025-03-03",
+    "totalPurchasePrice": 200.17
+  },
+  {
+    "id": 30,
+    "category": "Crypto",
+    "name": "SOL",
+    "quantity": 0.014,
+    "date": "2025-01-12",
+    "totalPurchasePrice": 247.66
+  },
+  {
+    "id": 31,
+    "category": "Crypto",
+    "name": "SOL",
+    "quantity": 0.0096,
+    "date": "2025-01-19",
+    "totalPurchasePrice": 249.59
+  },
+  {
+    "id": 32,
+    "category": "Crypto",
+    "name": "SOL",
+    "quantity": 0.0102,
+    "date": "2025-01-26",
+    "totalPurchasePrice": 247.9
+  },
+  {
+    "id": 33,
+    "category": "Crypto",
+    "name": "SOL",
+    "quantity": 0.0124,
+    "date": "2025-02-02",
+    "totalPurchasePrice": 247.79
+  },
+  {
+    "id": 34,
+    "category": "Crypto",
+    "name": "SOL",
+    "quantity": 0.0296,
+    "date": "2025-02-17",
+    "totalPurchasePrice": 500
+  },
+  {
+    "id": 35,
+    "category": "Crypto",
+    "name": "SOL",
+    "quantity": 0.0163,
+    "date": "2025-02-24",
+    "totalPurchasePrice": 229
+  },
+  {
+    "id": 36,
+    "category": "Crypto",
+    "name": "SOL",
+    "quantity": 0.0169,
+    "date": "2025-03-03",
+    "totalPurchasePrice": 247.77
+  },
+  {
+    "id": 39,
+    "category": "Crypto",
+    "name": "DOGE",
+    "quantity": 5.2,
+    "date": "2025-01-26",
+    "totalPurchasePrice": 197
+  },
+  {
+    "id": 40,
+    "category": "Crypto",
+    "name": "DOGE",
+    "quantity": 14,
+    "date": "2025-01-12",
+    "totalPurchasePrice": 444.73
+  },
+  {
+    "id": 41,
+    "category": "Crypto",
+    "name": "DOGE",
+    "quantity": 5.2,
+    "date": "2025-01-19",
+    "totalPurchasePrice": 197.18
+  },
+  {
+    "id": 42,
+    "category": "Crypto",
+    "name": "DOGE",
+    "quantity": 7.1,
+    "date": "2025-02-02",
+    "totalPurchasePrice": 198
+  },
+  {
+    "id": 43,
+    "category": "Crypto",
+    "name": "DOGE",
+    "quantity": 16.6,
+    "date": "2025-01-17",
+    "totalPurchasePrice": 400.06
+  },
+  {
+    "id": 44,
+    "category": "Crypto",
+    "name": "DOGE",
+    "quantity": 9,
+    "date": "2025-02-23",
+    "totalPurchasePrice": 199.35
+  },
+  {
+    "id": 45,
+    "category": "Crypto",
+    "name": "DOGE",
+    "quantity": 9.9,
+    "date": "2025-03-03",
+    "totalPurchasePrice": 200.17
+  },
+  {
+    "id": 46,
+    "category": "Crypto",
+    "name": "TRUMP",
+    "quantity": 0.278,
+    "date": "2025-01-19",
+    "totalPurchasePrice": 2001
+  },
+  {
+    "id": 47,
+    "category": "Stocks",
+    "name": "PATELENG",
+    "quantity": 20,
+    "date": "2024-08-02",
+    "totalPurchasePrice": 1151
+  },
+  {
+    "id": 48,
+    "category": "Stocks",
+    "name": "TATA STEEL",
+    "quantity": 10,
+    "date": "2024-08-12",
+    "totalPurchasePrice": 1513
+  },
+  {
+    "id": 49,
+    "category": "Stocks",
+    "name": "TATA MOTORS",
+    "quantity": 25,
+    "date": "2025-03-03",
+    "totalPurchasePrice": 15405
+  },
+  {
+    "id": 50,
+    "category": "MF Zerodha",
+    "name": "MF Zerodha",
+    "quantity": 21.756,
+    "date": "2025-01-13",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 51,
+    "category": "MF Zerodha",
+    "name": "MF Zerodha",
+    "quantity": 21.756,
+    "date": "2025-01-22",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 52,
+    "category": "MF Zerodha",
+    "name": "MF Zerodha",
+    "quantity": 22.135,
+    "date": "2025-02-20",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 53,
+    "category": "MF Zerodha",
+    "name": "MF Zerodha",
+    "quantity": 21.415,
+    "date": "2025-03-27",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 54,
+    "category": "MF Zerodha",
+    "name": "MF Zerodha",
+    "quantity": 20.812,
+    "date": "2025-04-29",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 55,
+    "category": "MF Zerodha",
+    "name": "MF Zerodha",
+    "quantity": 20.282,
+    "date": "2025-05-21",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 56,
+    "category": "MF Zerodha",
+    "name": "MF Zerodha",
+    "quantity": 19.893,
+    "date": "2025-06-24",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 57,
+    "category": "MF Zerodha",
+    "name": "MF Zerodha",
+    "quantity": 19.737,
+    "date": "2025-07-22",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 58,
+    "category": "MF Groww",
+    "name": "Motial Oswal Midcap Fund",
+    "quantity": 26.218,
+    "date": "2025-01-13",
+    "totalPurchasePrice": 3000
+  },
+  {
+    "id": 59,
+    "category": "MF Groww",
+    "name": "Motial Oswal Midcap Fund",
+    "quantity": 28.419,
+    "date": "2025-02-19",
+    "totalPurchasePrice": 3000
+  },
+  {
+    "id": 60,
+    "category": "MF Groww",
+    "name": "Motial Oswal Midcap Fund",
+    "quantity": 28.354,
+    "date": "2025-03-28",
+    "totalPurchasePrice": 2999
+  },
+  {
+    "id": 62,
+    "category": "MF Groww",
+    "name": "Motial Oswal Midcap Fund",
+    "quantity": 26.403,
+    "date": "2025-05-19",
+    "totalPurchasePrice": 3000
+  },
+  {
+    "id": 63,
+    "category": "MF Groww",
+    "name": "Motial Oswal Midcap Fund",
+    "quantity": 26.322,
+    "date": "2025-06-19",
+    "totalPurchasePrice": 3000
+  },
+  {
+    "id": 64,
+    "category": "MF Groww",
+    "name": "Motial Oswal Midcap Fund",
+    "quantity": 25.281,
+    "date": "2025-07-22",
+    "totalPurchasePrice": 3000
+  },
+  {
+    "id": 65,
+    "category": "MF Groww",
+    "name": "Motial Oswal Midcap Fund",
+    "quantity": 27.653,
+    "date": "2025-04-29",
+    "totalPurchasePrice": 3000
+  },
+  {
+    "id": 66,
+    "category": "MF Groww",
+    "name": "Bandhan Core Equity Fund",
+    "quantity": 14.142,
+    "date": "2025-01-13",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 67,
+    "category": "MF Groww",
+    "name": "Bandhan Core Equity Fund",
+    "quantity": 14.606,
+    "date": "2025-02-17",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 68,
+    "category": "MF Groww",
+    "name": "Bandhan Core Equity Fund",
+    "quantity": 14.141,
+    "date": "2025-03-28",
+    "totalPurchasePrice": 1999
+  },
+  {
+    "id": 70,
+    "category": "MF Groww",
+    "name": "Bandhan Core Equity Fund",
+    "quantity": 13.253,
+    "date": "2025-05-19",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 71,
+    "category": "MF Groww",
+    "name": "Bandhan Core Equity Fund",
+    "quantity": 13.082,
+    "date": "2025-06-17",
+    "totalPurchasePrice": 1999
+  },
+  {
+    "id": 72,
+    "category": "MF Groww",
+    "name": "Bandhan Core Equity Fund",
+    "quantity": 13.848,
+    "date": "2025-04-17",
+    "totalPurchasePrice": 1998
+  },
+  {
+    "id": 73,
+    "category": "MF Groww",
+    "name": "ITI Small Cap Fund Direct",
+    "quantity": 68.807,
+    "date": "2025-01-13",
+    "totalPurchasePrice": 1999
+  },
+  {
+    "id": 74,
+    "category": "MF Groww",
+    "name": "ITI Small Cap Fund Direct",
+    "quantity": 75.035,
+    "date": "2025-02-19",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 75,
+    "category": "MF Groww",
+    "name": "ITI Small Cap Fund Direct",
+    "quantity": 71.304,
+    "date": "2025-03-28",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 76,
+    "category": "MF Groww",
+    "name": "ITI Small Cap Fund Direct",
+    "quantity": 68.615,
+    "date": "2025-04-29",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 77,
+    "category": "MF Groww",
+    "name": "ITI Small Cap Fund Direct",
+    "quantity": 65.664,
+    "date": "2025-05-19",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 78,
+    "category": "MF Groww",
+    "name": "ITI Small Cap Fund Direct",
+    "quantity": 64.94,
+    "date": "2025-06-19",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 79,
+    "category": "MF Groww",
+    "name": "ITI Small Cap Fund Direct",
+    "quantity": 61.607,
+    "date": "2025-07-22",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 80,
+    "category": "MF Groww",
+    "name": "Invesco India Small Cap Fund",
+    "quantity": 46.455,
+    "date": "2025-01-13",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 81,
+    "category": "MF Groww",
+    "name": "Invesco India Small Cap Fund",
+    "quantity": 51.359,
+    "date": "2025-02-17",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 82,
+    "category": "MF Groww",
+    "name": "Invesco India Small Cap Fund",
+    "quantity": 49.332,
+    "date": "2025-03-28",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 83,
+    "category": "MF Groww",
+    "name": "Invesco India Small Cap Fund",
+    "quantity": 47.605,
+    "date": "2025-04-29",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 84,
+    "category": "MF Groww",
+    "name": "Invesco India Small Cap Fund",
+    "quantity": 45.359,
+    "date": "2025-05-19",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 85,
+    "category": "MF Groww",
+    "name": "Invesco India Small Cap Fund",
+    "quantity": 43.628,
+    "date": "2025-06-17",
+    "totalPurchasePrice": 2000
+  },
+  {
+    "id": 86,
+    "category": "MF Groww",
+    "name": "Invesco India Small Cap Fund",
+    "quantity": 83.608,
+    "date": "2025-07-22",
+    "totalPurchasePrice": 4000
+  },
+  {
+    "id": 87,
+    "category": "ETF Groww",
+    "name": "JUNIORBEES",
+    "quantity": 1,
+    "date": "2025-01-24",
+    "totalPurchasePrice": 672.09
+  },
+  {
+    "id": 88,
+    "category": "ETF Groww",
+    "name": "JUNIORBEES",
+    "quantity": 2,
+    "date": "2025-02-11",
+    "totalPurchasePrice": 1299.9
+  },
+  {
+    "id": 89,
+    "category": "ETF Groww",
+    "name": "JUNIORBEES",
+    "quantity": 2,
+    "date": "2025-02-21",
+    "totalPurchasePrice": 1293.34
+  },
+  {
+    "id": 90,
+    "category": "ETF Groww",
+    "name": "HDFCSML250",
+    "quantity": 4,
+    "date": "2025-01-13",
+    "totalPurchasePrice": 648
+  },
+  {
+    "id": 91,
+    "category": "ETF Groww",
+    "name": "HDFCSML250",
+    "quantity": 4,
+    "date": "2025-02-11",
+    "totalPurchasePrice": 610
+  },
+  {
+    "id": 92,
+    "category": "ETF Groww",
+    "name": "HDFCSML250",
+    "quantity": 5,
+    "date": "2025-02-14",
+    "totalPurchasePrice": 725
+  },
+  {
+    "id": 93,
+    "category": "ETF Groww",
+    "name": "HDFCSML250",
+    "quantity": 3,
+    "date": "2025-03-03",
+    "totalPurchasePrice": 413.97
+  },
+  {
+    "id": 94,
+    "category": "ETF Groww",
+    "name": "Motilal-NASDAQ 100",
+    "quantity": 3,
+    "date": "2025-01-27",
+    "totalPurchasePrice": 640.77
+  },
+  {
+    "id": 95,
+    "category": "ETF Groww",
+    "name": "Motilal-NASDAQ 100",
+    "quantity": 2,
+    "date": "2025-01-30",
+    "totalPurchasePrice": 410
+  },
+  {
+    "id": 96,
+    "category": "ETF Groww",
+    "name": "Motilal-NASDAQ 100",
+    "quantity": 3,
+    "date": "2025-02-24",
+    "totalPurchasePrice": 599
+  },
+  {
+    "id": 97,
+    "category": "ETF Groww",
+    "name": "Motilal-NASDAQ 100",
+    "quantity": 6,
+    "date": "2025-03-11",
+    "totalPurchasePrice": 1085.94
+  },
+  {
+    "id": 98,
+    "category": "ETF Groww",
+    "name": "Motilal-NASDAQ 100",
+    "quantity": 6,
+    "date": "2025-03-12",
+    "totalPurchasePrice": 1076
+  },
+  {
+    "id": 99,
+    "category": "ETF Groww",
+    "name": "CPSE ETF",
+    "quantity": 7,
+    "date": "2025-02-01",
+    "totalPurchasePrice": 586.32
+  },
+  {
+    "id": 100,
+    "category": "ETF Groww",
+    "name": "CPSE ETF",
+    "quantity": 10,
+    "date": "2025-02-03",
+    "totalPurchasePrice": 804.4
+  },
+  {
+    "id": 101,
+    "category": "ETF Groww",
+    "name": "Nippon ETF Nifty Midcap 150",
+    "quantity": 3,
+    "date": "2025-02-01",
+    "totalPurchasePrice": 604.53
+  },
+  {
+    "id": 102,
+    "category": "ETF Groww",
+    "name": "Nippon ETF Nifty Midcap 150",
+    "quantity": 3,
+    "date": "2025-02-17",
+    "totalPurchasePrice": 561.78
+  },
+  {
+    "id": 103,
+    "category": "ETF Groww",
+    "name": "Nippon ETF Nifty Midcap 150",
+    "quantity": 2,
+    "date": "2025-02-28",
+    "totalPurchasePrice": 363.5
+  },
+  {
+    "id": 104,
+    "category": "ETF Groww",
+    "name": "SILVERBEES",
+    "quantity": 7,
+    "date": "2025-01-14",
+    "totalPurchasePrice": 603
+  },
+  {
+    "id": 105,
+    "category": "ETF Groww",
+    "name": "SILVERBEES",
+    "quantity": 5,
+    "date": "2025-02-06",
+    "totalPurchasePrice": 458.85
+  },
+  {
+    "id": 106,
+    "category": "ETF Groww",
+    "name": "MAHAKTECH",
+    "quantity": 25,
+    "date": "2025-01-22",
+    "totalPurchasePrice": 467
+  },
+  {
+    "id": 107,
+    "category": "ETF Groww",
+    "name": "MAHAKTECH",
+    "quantity": 20,
+    "date": "2025-02-24",
+    "totalPurchasePrice": 490
+  },
+  {
+    "id": 108,
+    "category": "ETF Groww",
+    "name": "SENSEXETF",
+    "quantity": 1,
+    "date": "2025-02-01",
+    "totalPurchasePrice": 871.6
+  },
+  {
+    "id": 109,
+    "category": "ETF Groww",
+    "name": "Nippon India ETF Gold BeEs",
+    "quantity": 8,
+    "date": "2025-01-20",
+    "totalPurchasePrice": 532.48
+  },
+  {
+    "id": 110,
+    "category": "ETF Groww",
+    "name": "Mirae Asset NYSE FANG+ETF",
+    "quantity": 4,
+    "date": "2025-01-15",
+    "totalPurchasePrice": 528.28
+  },
+  {
+    "id": 111,
+    "category": "ETF Groww",
+    "name": "Mirae Asset NYSE FANG+ETF",
+    "quantity": 5,
+    "date": "2025-02-28",
+    "totalPurchasePrice": 638.9
+  },
+  {
+    "id": 112,
+    "category": "ETF Groww",
+    "name": "Mirae Asset NYSE FANG+ETF",
+    "quantity": 4,
+    "date": "2025-03-04",
+    "totalPurchasePrice": 509.56
+  },
+  {
+    "id": 113,
+    "category": "ETF Groww",
+    "name": "Mirae Asset NYSE FANG+ETF",
+    "quantity": 5,
+    "date": "2025-03-11",
+    "totalPurchasePrice": 567.95
+  },
+  {
+    "id": 114,
+    "category": "ETF Groww",
+    "name": "NIFTYBEES",
+    "quantity": 2,
+    "date": "2025-01-17",
+    "totalPurchasePrice": 519
+  },
+  {
+    "id": 117,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2024-09-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 118,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2024-10-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 119,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2024-11-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 120,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2024-12-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 121,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2025-01-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 122,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2025-02-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 123,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2025-03-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 124,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2025-04-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 125,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2025-05-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 126,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2025-06-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 127,
+    "category": "PF",
+    "name": "PF",
+    "quantity": 1,
+    "date": "2025-07-15",
+    "totalPurchasePrice": 3600
+  },
+  {
+    "id": 129,
+    "category": "Ghar Committee",
+    "name": "Ghar Committee",
+    "quantity": 1,
+    "date": "2025-07-15",
+    "totalPurchasePrice": 4000
+  },
+  {
+    "id": 132,
+    "category": "Gold",
+    "name": "Gold",
+    "quantity": 46.8011,
+    "date": "2025-01-19",
+    "totalPurchasePrice": 386330
+  },
+  {
+    "id": 128,
+    "category": "Tauji Committee",
+    "name": "Tauji Committee",
+    "quantity": 1,
+    "date": "2025-06-18",
+    "totalPurchasePrice": 84500
+  },
+  {
+    "id": 134,
+    "category": "Tauji Committee",
+    "name": "Tauji Committee",
+    "quantity": 1,
+    "date": "2025-07-15",
+    "totalPurchasePrice": 100000
+  },
+  {
+    "id": 135,
+    "category": "Ghar Committee",
+    "name": "Ghar Committee",
+    "quantity": 1,
+    "date": "2025-08-01",
+    "totalPurchasePrice": 4000
+  },
+  {
+    "id": 136,
+    "category": "Money",
+    "name": "PNB",
+    "quantity": 0,
+    "date": "2025-08-01",
+    "totalPurchasePrice": 230850,
+    "currentValue": 230850
+  },
+  {
+    "id": 137,
+    "category": "Money",
+    "name": "INDIAN",
+    "quantity": 0,
+    "date": "2025-08-01",
+    "totalPurchasePrice": 1066,
+    "currentValue": 1066
+  },
+  {
+    "id": 138,
+    "category": "Money",
+    "name": "UNION",
+    "quantity": 0,
+    "date": "2025-08-01",
+    "totalPurchasePrice": 1040,
+    "currentValue": 1040
+  },
+  {
+    "id": 139,
+    "category": "Money",
+    "name": "INDIAN OVERSEAS",
+    "quantity": 0,
+    "date": "2025-08-01",
+    "totalPurchasePrice": 630,
+    "currentValue": 630
+  },
+  {
+    "id": 140,
+    "category": "Money",
+    "name": "CASH",
+    "quantity": 0,
+    "date": "2025-08-01",
+    "totalPurchasePrice": 500,
+    "currentValue": 500
+  },
+  {
+    "id": 141,
+    "category": "Money",
+    "name": "PSB",
+    "quantity": 0,
+    "date": "2025-08-01",
+    "totalPurchasePrice": 1426,
+    "currentValue": 1426
+  }
+]
